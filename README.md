@@ -1,3 +1,3 @@
 # Kursova
 
-##ArchiveEighteen(18)
+##ArchiveEighteen
