@@ -50,7 +50,7 @@ void UMainMapBuilder::BuildGeneralWalls(const FVector2D& Dimensions)
 		{
 			TileAmount = Dimensions.X;
 		}
-		SpawnPosition = WallLine(SpawnPosition, TileAmount, RotationDegree);
+		SpawnPosition = BuildWallLine(SpawnPosition, TileAmount, RotationDegree);
 	}
 }
 
@@ -71,15 +71,6 @@ void UMainMapBuilder::BuildObstacles(const FVector2D& Dimensions)
 			SpawnedObjectCounter++;
 		}
 	}
-}
-
-void UMainMapBuilder::PlaceRadio(const FVector2D& Dimensions)
-{
-	Radio = ARadio::GetInstance(GetWorld(), RadioClass);
-	
-	if(Radio)
-		Radio->SetActorLocation(FVector(UKismetMathLibrary::RandomFloatInRange(-Dimensions.X/2.f * TileLength, Dimensions.X/2.f * TileLength),
-				UKismetMathLibrary::RandomFloatInRange(-Dimensions.Y/2.f * TileLength, Dimensions.Y/2.f * TileLength), 57.f), false,nullptr, ETeleportType::TeleportPhysics);
 }
 
 void UMainMapBuilder::CreateForest(const FVector2D& Dimensions)
@@ -111,7 +102,7 @@ int UMainMapBuilder::CalculateStartingPoint(int Dimension)
 		return ((Dimension - 1) * TileLength / 2) - (TileLength / 2);
 }
 
-FVector2D UMainMapBuilder::WallLine(const FVector2D& StartingPoint, const int TileAmount, const float RotationDegrees)
+FVector2D UMainMapBuilder::BuildWallLine(const FVector2D& StartingPoint, const int TileAmount, const float RotationDegrees)
 {
 	FActorSpawnParameters SpawnParameters;
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
