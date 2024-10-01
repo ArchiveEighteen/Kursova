@@ -20,21 +20,18 @@ public:
 
 	virtual void BeginPlay() override;
 
-	void SetupInputComponent() override;
+	virtual void SetupInputComponent() override;
 
 	//*****************************************
 	void LookUp(float Value);
 
 	void LookRight(float Value);
-
-	void RotatePositive();
-	void RotateNegative();
 	
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player")
 	AMainPlayer* ControlledPlayer;
 
 	UPROPERTY(EditDefaultsOnly)
-	float MouseSensivity;
+	float MouseSensitivity;
 	
 };
